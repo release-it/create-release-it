@@ -1,0 +1,35 @@
+{
+  "name": "create-release-it",
+  "version": "0.0.0",
+  "description": "Add release-it to any project",
+  "bin": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "release": "release-it"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/release-it/create-release-it.git"
+  },
+  "keywords": [
+    "init",
+    "create",
+    "release",
+    "release-it"
+  ],
+  "author": {
+    "email": "lars@webpro.nl",
+    "name": "Lars Kappert"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/release-it/create-release-it/issues"
+  },
+  "homepage": "https://github.com/release-it/create-release-it#readme",
+  "dependencies": {
+    "execa": "^1.0.0",
+    "git-remote-origin-url": "^3.0.0",
+    "git-url-parse": "^11.1.2",
+    "prompts": "^2.1.0"
+  }
+}
