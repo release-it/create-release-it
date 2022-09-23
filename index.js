@@ -56,7 +56,7 @@ const PACKAGE_CONFIG = 'package.json';
       type: 'confirm',
       name: 'github',
       message: 'Publish a GitHub Release with every release?',
-      initial: true,
+      initial: true
     });
   }
 
@@ -65,7 +65,7 @@ const PACKAGE_CONFIG = 'package.json';
       type: 'confirm',
       name: 'gitlab',
       message: 'Publish a GitLab Release with every release?',
-      initial: true,
+      initial: true
     });
   }
 
@@ -76,10 +76,10 @@ const PACKAGE_CONFIG = 'package.json';
       message: 'Where to add the release-it config?',
       choices: [
         { title: '.release-it.json', value: RELEASE_IT_CONFIG },
-        { title: 'package.json', value: PACKAGE_CONFIG },
+        { title: 'package.json', value: PACKAGE_CONFIG }
       ],
       initial: 0,
-      hint: ' ',
+      hint: ' '
     });
   }
 
@@ -87,14 +87,14 @@ const PACKAGE_CONFIG = 'package.json';
 
   if (answers.github) {
     config.github = {
-      release: true,
+      release: true
     };
     isConfigChanged = true;
   }
 
   if (answers.gitlab) {
     config.gitlab = {
-      release: true,
+      release: true
     };
     isConfigChanged = true;
   }
@@ -130,6 +130,6 @@ const PACKAGE_CONFIG = 'package.json';
   }
 
   await execa('npm', ['install', 'release-it', '--save-dev'], {
-    stdio: 'inherit',
+    stdio: 'inherit'
   });
 })();
