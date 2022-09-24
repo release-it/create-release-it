@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Add release-it to any project",
   "bin": "index.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "release": "release-it"
@@ -31,5 +32,8 @@
     "git-remote-origin-url": "4.0.0",
     "git-url-parse": "13.1.0",
     "prompts": "^2.1.0"
+  },
+  "engines": {
+    "node": ">=14.9"
   }
 }

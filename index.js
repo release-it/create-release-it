@@ -1,12 +1,12 @@
 #!/usr/bin/env node
 
-const fs = require('fs');
-const util = require('util');
-const { EOL } = require('os');
-const prompts = require('prompts');
-const gitRemoteOriginUrl = require('git-remote-origin-url');
-const parseGitUrl = require('git-url-parse');
-const execa = require('execa');
+import fs from 'fs';
+import util from 'util';
+import { EOL } from 'os';
+import prompts from 'prompts';
+import gitRemoteOriginUrl from 'git-remote-origin-url';
+import parseGitUrl from 'git-url-parse';
+import { execa } from 'execa';
 
 const readFile = util.promisify(fs.readFile);
 const writeFile = util.promisify(fs.writeFile);
