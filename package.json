@@ -27,9 +27,9 @@
   },
   "homepage": "https://github.com/release-it/create-release-it#readme",
   "dependencies": {
-    "execa": "^1.0.0",
-    "git-remote-origin-url": "^3.0.0",
-    "git-url-parse": "^11.1.2",
+    "execa": "6.1.0",
+    "git-remote-origin-url": "4.0.0",
+    "git-url-parse": "13.1.0",
     "prompts": "^2.1.0"
   }
 }
