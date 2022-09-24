@@ -43,8 +43,8 @@ const PACKAGE_CONFIG = 'package.json';
 
   if (remoteUrl) {
     const parsedRemoteUrl = parseGitUrl(remoteUrl);
-    isGitHub = parsedRemoteUrl.source === 'github.com';
-    isGitLab = parsedRemoteUrl.source === 'gitlab.com';
+    isGitHub = parsedRemoteUrl.host.includes('github.com');
+    isGitLab = parsedRemoteUrl.host.includes('gitlab.com');
   }
 
   const questions = [];
