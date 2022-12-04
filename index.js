@@ -117,5 +117,37 @@ const PACKAGE_CONFIG = 'package.json';
     await writeFile(PACKAGE_CONFIG, JSON.stringify(manifest, null, '  ') + EOL);
   }
 
-  await execa('npm', ['install', 'release-it', '--save-dev'], { stdio: 'inherit' });
+  // console.log('process.env.npm_config_user_agent', process.env.npm_config_user_agent)
+  const usedPM = getUsedPM();
+
+  let pm = null;
+  let addPkgCmd = null;
+  switch (usedPM) {
+    case 'pnpm':
+    case 'yarn':
+      pm = usedPM
+      addPkgCmd = 'add';
+    case 'npm':
+    case 'cnpm':
+    default:
+      pm = usedPM || 'npm';
+      addPkgCmd = 'install'
+      break;
+  }
+
+  await execa(pm, [addPkgCmd, 'release-it', '--save-dev'], { stdio: 'inherit' });
 })();
+
+function getUsedPM() {
+  if (!process.env.npm_config_user_agent) {
+    return undefined
+  }
+  return pmFromUserAgent(process.env.npm_config_user_agent)
+}
+
+function pmFromUserAgent (userAgent) {
+  const pmSpec = userAgent.split(' ')[0]
+  const separatorPos = pmSpec.lastIndexOf('/')
+  const name = pmSpec.substring(0, separatorPos)
+  return name === 'npminstall' ? 'cnpm' : name
+}
