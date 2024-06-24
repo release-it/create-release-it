@@ -37,6 +37,11 @@ const PACKAGE_CONFIG = 'package.json';
     hasConfig = true;
   } catch (err) {}
 
+  config = {
+    $schema: 'https://unpkg.com/release-it/schema/release-it.json',
+    ...config
+  };
+
   try {
     remoteUrl = await gitRemoteOriginUrl();
   } catch (err) {}
