@@ -35,5 +35,8 @@
   },
   "engines": {
     "node": ">=14.9"
+  },
+  "devDependencies": {
+    "detect-package-manager": "^3.0.2"
   }
 }

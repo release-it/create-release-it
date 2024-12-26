@@ -7,6 +7,7 @@ import prompts from 'prompts';
 import gitRemoteOriginUrl from 'git-remote-origin-url';
 import parseGitUrl from 'git-url-parse';
 import { execa } from 'execa';
+import { detect } from 'detect-package-manager';
 
 const readFile = util.promisify(fs.readFile);
 const writeFile = util.promisify(fs.writeFile);
@@ -122,5 +123,28 @@ const PACKAGE_CONFIG = 'package.json';
     await writeFile(PACKAGE_CONFIG, JSON.stringify(manifest, null, '  ') + EOL);
   }
 
-  await execa('npm', ['install', 'release-it', '--save-dev'], { stdio: 'inherit' });
+  let currentPackageManager;
+  try {
+    currentPackageManager = await detect();
+  } catch (error) {
+    console.warn('Failed to detect package manager, falling back to npm');
+    currentPackageManager = 'npm';
+  }
+
+  const packageManagerCommands = {
+    npm: () => execa('npm', ['install', 'release-it', '-D'], { stdio: 'inherit' }),
+    pnpm: () => execa('pnpm', ['add', 'release-it', '-D'], { stdio: 'inherit' }),
+    yarn: () => execa('yarn', ['add', 'release-it', '-D'], { stdio: 'inherit' }),
+    bun: () => execa('bun', ['add', 'release-it', '-D'], { stdio: 'inherit' })
+  };
+
+  try {
+    console.log(`Installing release-it using ${currentPackageManager}...`);
+    const installDependency = packageManagerCommands[currentPackageManager] || packageManagerCommands.npm;
+    await installDependency();
+    console.log('Successfully installed release-it');
+  } catch (error) {
+    console.error('Failed to install release-it:', error.message);
+    process.exit(1);
+  }
 })();
