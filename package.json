@@ -31,12 +31,10 @@
     "execa": "6.1.0",
     "git-remote-origin-url": "4.0.0",
     "git-url-parse": "13.1.0",
-    "prompts": "^2.1.0"
+    "prompts": "^2.1.0",
+    "detect-package-manager": "^3.0.2"
   },
   "engines": {
     "node": ">=14.9"
-  },
-  "devDependencies": {
-    "detect-package-manager": "^3.0.2"
   }
 }
