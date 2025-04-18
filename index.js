@@ -1,13 +1,13 @@
 #!/usr/bin/env node
 
-import fs from 'fs';
-import util from 'util';
-import { EOL } from 'os';
+import fs from 'node:fs';
+import util from 'node:util';
+import { EOL } from 'node:os';
 import prompts from 'prompts';
 import gitRemoteOriginUrl from 'git-remote-origin-url';
 import parseGitUrl from 'git-url-parse';
 import { execa } from 'execa';
-import { detect } from 'package-manager-detector/detect'
+import { detect } from 'package-manager-detector/detect';
 
 const readFile = util.promisify(fs.readFile);
 const writeFile = util.promisify(fs.writeFile);
@@ -133,12 +133,12 @@ const PACKAGE_INSTALL_COMMANDS = {
   try {
     const detectedPackageManager = await detect();
     const packageManagerName = detectedPackageManager?.name || 'npm';
-    
+
     console.log(`Installing release-it using ${packageManagerName}...`);
-    
+
     const [execCommand, execArgs] = PACKAGE_INSTALL_COMMANDS[packageManagerName] || PACKAGE_INSTALL_COMMANDS.npm;
     await execa(execCommand, execArgs, { stdio: 'inherit' });
-    
+
     console.log('Successfully installed release-it');
   } catch (error) {
     console.error('Failed to install release-it:', error.message);
