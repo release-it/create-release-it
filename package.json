@@ -1,6 +1,6 @@
 {
   "name": "create-release-it",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "description": "Add release-it to any project",
   "bin": "index.js",
   "type": "module",
